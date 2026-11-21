@@ -11,8 +11,8 @@
 | W12 | 같은 결정 지점을 다시 보내면 어떤 선택이 달라졌나 | 지점별 입력, 추론 예산, 실제 다음 도구 호출, 비교 가능한 시행 수 |
 | W13 | 짧은 규칙과 많은 규칙의 통과 수는 다시 돌려도 같았나 | [초기·후속 비교와 오류 기록](harness-rules-comparison.md) |
 | W13 | 1M 컨텍스트를 사용할 때 어느 자원에서 병목이 났나 | [엔진과 KV 형식별 짧은 실행 점검](../cases/long-context-memory.md) |
-| W14, G1 | 점수표에서 놓치기 쉬운 게임 결함은 무엇이었나 | 원본 실행 화면, 실제 플레이 판정, 미평가 항목 |
-| D1, D2, D3, D4, G3, G4 | 큰 3D 과제를 검증 가능한 단계로 어떻게 나눴나 | [빈 화면 진단](../cases/godot-blank-screen.md) · [발 미끄러짐 보정](../cases/godot-foot-slide.md) |
+| W14, G1 | 점수표에서 놓치기 쉬운 게임 결함은 무엇이었나 | [Neon Blaster 다섯 결과의 실제 실행 화면과 판정](../cases/neon-blaster-comparison.md) |
+| D1, D2, D3, D4, G3, G4 | 큰 3D 과제를 검증 가능한 단계로 어떻게 나눴나 | [다섯 단계의 소요 시간과 판정](../cases/godot-curriculum.md) · [빈 화면 진단](../cases/godot-blank-screen.md) · [발 미끄러짐 보정](../cases/godot-foot-slide.md) |
 | W05, G2, G5 | 터미널 작업 기록을 앱에서 어떻게 따라가게 바꿨나 | [채팅 내 실행 기록과 별도의 작업 패널](../cases/ada-app-execution-view.md) |
 | G6 | 일지에서 남긴 절차가 다음 작업에서 다시 쓰였나 | [다음 작업에서 사진부터 본 사례](../cases/godot-blank-screen.md#무엇을-보고-수정했나) |
 | 기존 GitHub의 Ada 검증 문서 | 다른 머신에서 평가를 재현하려면 무엇부터 확인하나 | [외부 실행 환경의 사전 점검 범위](runner-preflight.md) |

@@ -12,6 +12,7 @@ RTX 3060 12GB가 달린 개인 PC에서 로컬 AI 에이전트 Ada에 파일·�
 | [Neon Blaster 결과물 다섯 개 비교](cases/neon-blaster-comparison.md) | 제작 조건과 사용량, 모델별 플레이 화면, Ada가 만든 오프라인 게임 |
 | [같은 최적화 과제를 네 하네스로 비교](archive/harness-rules-comparison.md) | 두 배치의 통과 수·실행 시간·404, 시행별 CSV |
 | [A스페이스를 켜고 끈 복셀 과제](cases/aspace-voxel.md) | 초기 서버 장애와 재실행, 자동 인출과 토큰 비용, 남은 게임 결함 |
+| [RTX 3060 eGPU에서 Inkling-2-Mini 4비트 돌리기](cases/inkling2-rtx3060-egpu.md) | 프리필·디코드 실측, MoE 버그 수정, NInfer 비교와 요청별 CSV |
 | [1M 컨텍스트를 시험하고 262K로 돌아온 이유](cases/long-context-memory.md) | 엔진·KV별 실행 결과와 RAM 병목 |
 | [외부 검증기를 실행하기 전에 확인한 것](archive/runner-preflight.md) | 기존 GitHub 저장소에서 가져온 실행 환경 사전 점검 |
 

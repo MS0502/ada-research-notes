@@ -19,6 +19,8 @@ Tested on November 26, 2026. The engine is based on [`kuraneko1/Strata` at `22ce
 | 104.6K effective cold prefill | 466.5 tok/s | 873.9 tok/s | **913.8 tok/s** |
 | ~166K extension TTFT, ~61K new tokens | 205.8 s | 115.8 s | **90.5 s** |
 | Extension effective prefill | 296.8 tok/s | 527.2 tok/s | **674.9 tok/s** |
+| 104.6K cold-run decode | 21.1 tok/s | 23.8 tok/s | **26.6 tok/s** |
+| ~166K extension decode | 18.8 tok/s | 18.4 tok/s | **22.8 tok/s** |
 | Cached follow-up TTFT near 105K | 1.0–1.1 s | 0.9–1.0 s | 0.8–1.2 s |
 | Cached follow-up TTFT near 166K | 1.2–1.7 s | 1.1–1.5 s | 1.1–3.7 s |
 | Cached follow-up decode across ~105K–166K | 18.1–25.5 tok/s | 19.9–27.1 tok/s | **25.1–30.9 tok/s** |
@@ -28,7 +30,7 @@ The generic profile used conservative prefill settings on `sm_86`. Allowing the 
 
 An earlier adaptive-profile build ran the long-context sequence at `temperature=1.0`. That sequence predates the slot fix and is outside the comparison above. The patched build was exercised at `temperature=1.0` in the separate short generation check.
 
-![Effective cold prefill at 104,610 tokens across three Strata configurations, and image time to first token at about 167K for the patched fork and NInfer](../assets/inkling2-rtx3060-egpu.png)
+![Strata fork throughput before and after tuning on an RTX 3060 eGPU. Cold prefill 466.5 to 913.8 tokens/s, extension prefill 296.8 to 674.9, cold-run decode 21.1 to 26.6, extension decode 18.8 to 22.8, and cached text decode 18.1–25.5 to 25.1–30.9. A separate Strata 0.1.67 SQ-15 run measured 240.1 prefill and 13.4 decode at 70,317 tokens under different conditions.](../assets/inkling2-rtx3060-egpu.png)
 
 ## Other runtimes on the same PC
 
@@ -38,6 +40,8 @@ An earlier adaptive-profile build ran the long-context sequence at `temperature=
 | NInfer-all `2026-11-25.2`, Windows, `UD-IQ4_XS`, `rk4v4` KV | 431.0 tok/s / 242.8 s | 336.3 tok/s / 181.6 s | 14.1–18.7 tok/s | **6.5 s** / 13.4 tok/s |
 
 These are measurements of the tested configurations. The model quantization, KV format and OS runtime differ. The default NInfer configuration completed all seven requests. An alternate configuration using `--embedding-residency host` was rejected at startup for this model and has no timing result. In the recorded Strata SQ-15 run with [Niko1221/Strata PR #6780](https://github.com/Niko1221/Strata/pull/6780), two short checks completed. No comparable long-context measurements were recorded for that run. Unsloth `llama.cpp b12651` is the same-weight correctness reference below.
+
+An earlier Strata 0.1.67 test on this PC used SQ-15, k8v4 KV and a 131,072-token configured window. The cold replay request took 292.85 s to its first streamed token with 70,317 uncached input tokens, or 240.1 effective prefill tok/s. The observed decode rate was 13.4 tok/s. The weights, KV format and workload differ from the fork's 104,610-token run.
 
 For context, a separate earlier Qwen replay on this PC measured 521.6 tok/s cold prefill at 105,577 tokens, 471.7 tok/s on extension to ~164K and 27.1 s image TTFT. Qwen's cached text decode was 29.9–36.4 tok/s and was faster in three of four corresponding follow-ups. This is previous-use context across two different models, with different token counts and runtimes. The earlier Maya tests did not provide a directly comparable seven-step series for this report.
 
